@@ -1,0 +1,157 @@
+[EAL]
+n = 4
+
+[PIPELINE0]
+type = MASTER
+core = s0c0
+msgq_in = MSGQ-REQ-PIPELINE0
+msgq_out = MSGQ-RSP-PIPELINE0
+timer_period = 1
+
+[PIPELINE1]
+type = PASS-THROUGH
+core = s0c1
+pktq_in = RXQ0.0 RXQ1.0 RXQ2.0 RXQ3.0
+pktq_out = TXQ0.0 TXQ1.0 TXQ2.0 TXQ3.0
+msgq_in = MSGQ-REQ-PIPELINE1
+msgq_out = MSGQ-RSP-PIPELINE1
+timer_period = 1
+
+[MEMPOOL0]
+buffer_size = 2304
+pool_size = 32768
+cache_size = 256
+cpu = 0
+
+[LINK0]
+; pmd_id = 0
+promisc = yes
+arp_q = 0
+tcp_syn_q = 0
+ip_local_q = 0
+tcp_local_q = 0
+udp_local_q = 0
+sctp_local_q = 0
+; rss_qs = <NONE>
+; rss_proto_ipv4 = <NONE>
+; rss_proto_ipv6 = <NONE>
+; rss_proto_l2 = <NONE>
+
+[LINK1]
+; pmd_id = 1
+promisc = yes
+arp_q = 0
+tcp_syn_q = 0
+ip_local_q = 0
+tcp_local_q = 0
+udp_local_q = 0
+sctp_local_q = 0
+; rss_qs = <NONE>
+; rss_proto_ipv4 = <NONE>
+; rss_proto_ipv6 = <NONE>
+; rss_proto_l2 = <NONE>
+
+[LINK2]
+; pmd_id = 0
+promisc = yes
+arp_q = 0
+tcp_syn_q = 0
+ip_local_q = 0
+tcp_local_q = 0
+udp_local_q = 0
+sctp_local_q = 0
+; rss_qs = <NONE>
+; rss_proto_ipv4 = <NONE>
+; rss_proto_ipv6 = <NONE>
+; rss_proto_l2 = <NONE>
+
+[LINK3]
+; pmd_id = 0
+promisc = yes
+arp_q = 0
+tcp_syn_q = 0
+ip_local_q = 0
+tcp_local_q = 0
+udp_local_q = 0
+sctp_local_q = 0
+; rss_qs = <NONE>
+; rss_proto_ipv4 = <NONE>
+; rss_proto_ipv6 = <NONE>
+; rss_proto_l2 = <NONE>
+
+[RXQ0.0]
+mempool = MEMPOOL0
+size = 128
+burst = 32
+
+[RXQ1.0]
+mempool = MEMPOOL0
+size = 128
+burst = 32
+
+[RXQ2.0]
+mempool = MEMPOOL0
+size = 128
+burst = 32
+
+[RXQ3.0]
+mempool = MEMPOOL0
+size = 128
+burst = 32
+
+[TXQ0.0]
+size = 512
+burst = 32
+dropless = no
+n_retries = 0
+
+[TXQ1.0]
+size = 512
+burst = 32
+dropless = no
+n_retries = 0
+
+[TXQ2.0]
+size = 512
+burst = 32
+dropless = no
+n_retries = 0
+
+[TXQ3.0]
+size = 512
+burst = 32
+dropless = no
+n_retries = 0
+
+[MSGQ-REQ-PIPELINE0]
+size = 64
+cpu = 0
+
+[MSGQ-RSP-PIPELINE0]
+size = 64
+cpu = 0
+
+[MSGQ-REQ-CORE-s0c0]
+size = 64
+cpu = 0
+
+[MSGQ-RSP-CORE-s0c0]
+size = 64
+cpu = 0
+
+[MSGQ-REQ-PIPELINE1]
+size = 64
+cpu = 0
+
+[MSGQ-RSP-PIPELINE1]
+size = 64
+cpu = 0
+
+[MSGQ-REQ-CORE-s0c1]
+size = 64
+cpu = 0
+
+[MSGQ-RSP-CORE-s0c1]
+size = 64
+cpu = 0
+

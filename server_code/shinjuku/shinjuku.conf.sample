@@ -1,0 +1,108 @@
+# ix.conf
+# configuration file for IX
+#
+# This file defines the configuration for IX data center OS. You should
+# carefully update all fields in accordence with your local configuration
+# before running IX for the first time.
+
+###############################################################################
+# Network Parameters
+###############################################################################
+
+## host_addr : CIDR IP address and netmask that will be assigned to
+##      the adapter once it comes up.
+host_addr="10.1.0.1/24"
+
+# gateway_addr : default gateway IP address
+gateway_addr="10.1.0.1"
+
+## port : port(s) that will be bound to the application by the
+##      kernel when launching Shinjuku. Packets arriving at Each port
+##      will be treated as belonging to different request types.
+##      You can specify multiple entries, e.g. 'port=[X, Y, Z]'
+port=[1234,1235,1236]
+
+## slo : slo(s) in nanoseconds for each request type
+slo=[50,500,5000]
+
+## queue_settings : If true enqueue preempted packets to the head of their
+##                  corresponding queues. If false, enqueue to the back.
+queue_setting=[false]
+
+## preemption_delay: preemption time quantum in ns.
+preemption_delay=250000
+
+## arp: allows you to add static arp entries in the interface arp table.
+arp=(
+ {
+   ip : "10.1.0.1"
+   mac : "a8:2b:b5:de:92:2e"
+ },
+ {
+   ip : "10.1.0.2"
+   mac : "a8:2b:b5:de:92:32"
+ },
+ {
+   ip : "10.1.0.3"
+   mac : "a8:2b:b5:de:92:36"
+ },
+ {
+   ip : "10.1.0.4"
+   mac : "a8:2b:b5:de:92:3a"
+ },
+ {
+   ip : "10.1.0.5"
+   mac : "a8:2b:b5:de:92:3e"
+ },
+ {
+   ip : "10.1.0.6"
+   mac : "a8:2b:b5:de:92:42"
+ },
+ {
+   ip : "10.1.0.7"
+   mac : "a8:2b:b5:de:92:46"
+ },
+ {
+   ip : "10.1.0.8"
+   mac : "a8:2b:b5:de:92:4a"
+ },
+ {
+   ip : "10.1.0.9"
+   mac : "a8:2b:b5:de:92:4e"
+ },
+ {
+   ip : "10.1.0.10"
+   mac : "a8:2b:b5:de:92:52"
+ },
+ {
+   ip : "10.1.0.11"
+   mac : "a8:2b:b5:de:92:56"
+ },
+ {
+   ip : "10.1.0.12"
+   mac : "a8:2b:b5:de:92:5a"
+ }
+)
+
+###############################################################################
+# Hardware parameters
+###############################################################################
+
+## devices : Specifies the PCI device ID of the adapter to bind Shinjuku with.
+##      Should be an Intel compatible NIC (e.g. 82599, X520, X540, etc)..
+##      See the Docs to see which adapters are currently supported.
+##      Format is a list dddd:bb:ss.ff,... d - domain, b = bus,
+##      s = slot, f = function. Usually, `lspci | grep Ethernet` allows to see
+##      available Ethernet controllers.
+devices="0:05:00.0"
+
+## cpu : Indicates which CPU process unit(s) (P) this Shinjuku instance
+##      should be bound to. The first unit is used to run the dispatcher while
+##      the second is used for the networking subsystem. Shinjuku performs
+##      best when these two belong to the same physical core. The rest of the
+##      units are used as worker cores.
+cpu=[0,8,1,2,3,4,5,6,7]
+
+## loader_path : kernel loader to use with IX module:
+##
+loader_path="/lib64/ld-linux-x86-64.so.2"

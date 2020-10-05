@@ -1,0 +1,16 @@
+Shinjuku is a single-address space operating system that uses hardware support for virtualization to make preemption practical at the  microsecond scale, including for both light-tailed and heavy-tailed request service time distributions. Shinjuku was published in NSDI 19. The original implementation of Shinjuku places the dispatcher, the networking subsystem, and the worker cores on one x86 processor.
+
+This project offloads the dispatcher and the networking subsystem to the Broadcom StingRay SmartNIC.
+
+This repository contains the workers that receive requests from the dispatcher. The workers run on the x86 host while the dispatcher (and networking subsystem) run on the ARM cores in the StingRay.
+
+Set the following kernel parameters: noapictimer lapic=notscdeadline
+These kernel parameters get Linux to use a timer source other than the local APIC timers (e.g. to deliver timer interrupts) so that the workers can use their local APIC timers to send timer interrupts to themselves with high resolution time slices.
+
+Comment out the line below in dpdk/mk/arch/x86_64/rte.vars.mk:
+CPU_ASFLAGS ?= -felf64
+
+export RTE_SDK=/home/jhumphri/dpdk
+export RTE_TARGET=x86_64-native-linuxapp-gcc
+
+make

@@ -1,0 +1,16 @@
+# This file is used to manage the dependencies of Shinjuku.
+
+# Three lines of non-changing
+# comments so that git can
+# automatically merge this file.
+git://dpdk.org/dpdk dpdk v16.04
+
+# Three lines of non-changing
+# comments so that git can
+# automatically merge this file.
+https://github.com/ix-project/pcidma.git pcidma master
+
+# Three lines of non-changing
+# comments so that git can
+# automatically merge this file.
+https://github.com/kkaffes/dune.git dune master

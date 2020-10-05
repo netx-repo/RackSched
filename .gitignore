@@ -1,0 +1,12 @@
+# Python byte code
+*.pyc
+
+# Vim
+*.swp
+
+# Mac
+*.DS_Store
+
+# Bin
+*.o
+*.so
