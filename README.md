@@ -1,3 +1,8 @@
+## 0. Introduction<br>
+
+This repository contains the source code for our OSDI'20 paper
+["RackSched: A Microsecond-Scale Scheduler for Rack-Scale Computers"](https://www.usenix.org/conference/osdi20/presentation/zhu).
+
 ## 1. Content<br>
 
 - client_code/<br>
